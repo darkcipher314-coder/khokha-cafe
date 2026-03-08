@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khokha Cafe & Lounge</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- CSS VARIABLES & RESET --- */
+        :root {
+            --bg-color: #F9F7F2;
+            --text-color: #1A1A1A;
+            --accent-color: #C07A58;
+            --secondary-bg: #EAE6DE;
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Lato', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+
+        /* --- NAVIGATION --- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 5%;
+            position: absolute;
+            width: 100%;
+            top: 0;
+            z-index: 10;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+        }
+
+        .nav-links a {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--accent-color);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after { width: 100%; }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            /* Placeholder for a moody cafe image */
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=2047&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* Parallax effect */
+        }
+
+        .hero-content {
+            color: #fff;
+            max-width: 600px;
+            animation: fadeIn 2s ease;
+        }
+
+        .hero h1 {
+            font-family: var(--font-heading);
+            font-size: 4.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border: 1px solid #fff;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            background: transparent;
+        }
+
+        .btn:hover {
+            background-color: #fff;
+            color: var(--text-color);
+        }
+
+        /* --- ABOUT SECTION --- */
+        .about {
+            padding: 6rem 10%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-family: var(--font-heading);
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-text p {
+            color: #555;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        /* --- MENU SECTION --- */
+        .menu {
+            background-color: var(--secondary-bg);
+            padding: 6rem 10%;
+            text-align: center;
+        }
+
+        .menu h2 {
+            font-family: var(--font-heading);
+            font-size: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .menu-item {
+            background: var(--bg-color);
+            padding: 2rem;
+            text-align: left;
+            transition: transform 0.3s;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            font-family: var(--font-heading);
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .item-desc {
+            font-size: 0.9rem;
+            color: #666;
+            font-style: italic;
+        }
+
+        /* --- RESERVATION --- */
+        .reservation {
+            padding: 6rem 10%;
+            text-align: center;
+        }
+
+        .form-box {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border: none;
+            border-bottom: 1px solid #ccc;
+            background: transparent;
+            font-family: var(--font-body);
+        }
+
+        input:focus { outline: none; border-bottom: 1px solid var(--accent-color); }
+
+        .btn-submit {
+            background-color: var(--accent-color);
+            color: #fff;
+            border: none;
+            padding: 1rem 3rem;
+            margin-top: 1rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: #111;
+            color: #888;
+            padding: 3rem 10%;
+            text-align: center;
+            font-size: 0.8rem;
+        }
+
+        footer p { margin-top: 1rem; }
+
+        /* --- ANIMATIONS --- */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- MOBILE RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 3rem; }
+            .about { grid-template-columns: 1fr; }
+            .nav-links { display: none; } /* Simplified for demo */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGATION -->
+    <nav>
+        <div class="logo">KHOKHA.</div>
+        <ul class="nav-links">
+            <li><a href="#about">Our Story</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#reservation">Reserve</a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Khokha Cafe & Lounge</h1>
+            <p>Where the aroma of coffee meets the rhythm of the night.</p>
+            <a href="#menu" class="btn">View Menu</a>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="about">
+        <div class="about-text">
+            <h2>Rooted in Comfort.</h2>
+            <p>Khokha is more than a cafe; it is a sanctuary. Inspired by the earthy tones of nature and the warmth of community, we craft an atmosphere where time slows down.</p>
+            <p>Whether you are here for our single-origin pour-overs in the morning or our curated cocktails under the dim lights of the lounge, Khokha is your home away from home.</p>
+        </div>
+        <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=1974&auto=format&fit=crop" alt="Coffee Art" class="about-img">
+    </section>
+
+    <!-- MENU SECTION -->
+    <section id="menu" class="menu">
+        <h2>Curated Selection</h2>
+        <div class="menu-grid">
+            <!-- Item 1 -->
+            <div class="menu-item">
+                <div class="item-header">
+                    <span>The Khokha Latte</span>
+                    <span>$6.50</span>
+                </div>
+                <div class="item-desc">Espresso, steamed oat milk, house-made cardamom syrup.</div>
+            </div>
+            <!-- Item 2 -->
+            <div class="menu-item">
+                <div class="item-header">
+                    <span>Smoked Old Fashioned</span>
+                    <span>$14.00</span>
+                </div>
+                <div class="item-desc">Bourbon, maple bitters, hickory smoke, orange peel.</div>
+            </div>
+            <!-- Item 3 -->
+            <div class="menu-item">
+                <div class="item-header">
+                    <span>Truffle Avocado Toast</span>
+                    <span>$12.00</span>
+                </div>
+                <div class="item-desc">Sourdough, smashed avocado, truffle oil, poached egg.</div>
+            </div>
+            <!-- Item 4 -->
+            <div class="menu-item">
+                <div class="item-header">
+                    <span>Midnight Mocha</span>
+                    <span>$7.00</span>
+                </div>
+                <div class="item-desc">Dark chocolate ganache, espresso, whipped cream, sea salt.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RESERVATION SECTION -->
+    <section id="reservation" class="reservation">
+        <h2>Reserve Your Spot</h2>
+        <div class="form-box">
+            <form>
+                <input type="text" placeholder="Name" required>
+                <input type="email" placeholder="Email" required>
+                <select>
+                    <option>Cafe Seating</option>
+                    <option>Lounge Bar</option>
+                    <option>Private Event</option>
+                </select>
+                <input type="datetime-local" required>
+                <button type="submit" class="btn-submit">Confirm Booking</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="logo" style="color: #fff;">KHOKHA.</div>
+        <p>123 Aesthetic Avenue, Design District</p>
+        <p>&copy; 2023 Khokha Cafe & Lounge. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
